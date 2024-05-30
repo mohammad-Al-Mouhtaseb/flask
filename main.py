@@ -10,7 +10,6 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model.to(device)
 sampling_rate = model.config.audio_encoder.sampling_rate
 
-@csrf_exempt
 def gen_fun(request):
     inputs = processor(
         text=['sad'],

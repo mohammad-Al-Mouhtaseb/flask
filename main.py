@@ -16,7 +16,7 @@ def gen_fun():
         padding=True,
         return_tensors="pt",
     )
-    audio_values = model.generate(**inputs.to(device), do_sample=True, guidance_scale=3, max_new_tokens=1202)
+    audio_values = model.generate(**inputs.to(device), do_sample=True, guidance_scale=3, max_new_tokens=100)
     scipy.io.wavfile.write('s1', rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
 
 @app.route('/')

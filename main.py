@@ -4,17 +4,11 @@ from transformers import AutoProcessor, MusicgenForConditionalGeneration
 import requests, scipy, torch, threading
 app = Flask(__name__)
 
-
 model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small")
 processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model.to(device)
 sampling_rate = model.config.audio_encoder.sampling_rate
-
-
-@app.route('/')
-def index():
-    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
 
 @csrf_exempt
 def gen_fun(request):

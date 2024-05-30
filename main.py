@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 import os
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
-import requests, scipy, torch, threading
+import requests, scipy, torch
 app = Flask(__name__)
 
 model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small")
@@ -10,7 +10,7 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 model.to(device)
 sampling_rate = model.config.audio_encoder.sampling_rate
 
-def gen_fun(request):
+def gen_fun():
     inputs = processor(
         text=['sad'],
         padding=True,
@@ -21,9 +21,7 @@ def gen_fun(request):
 
 @app.route('/')
 def index():
-    t = threading.Thread(target=gen_fun, args=[request])
-    t.setDaemon(True)
-    t.start()
+    gen_fun()
     return jsonify({"res":"sucsess"})
 
 if __name__ == '__main__':

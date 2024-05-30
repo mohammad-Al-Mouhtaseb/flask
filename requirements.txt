@@ -7,7 +7,7 @@ MarkupSafe==1.1.1
 Werkzeug==1.0.1
 transformers==4.41.2
 requests==2.32.3
-scipy==5.5.5
+scipy==1.14.0rc1
 torch==5.5.5
 threading==5.5.5
 json==5.5.5

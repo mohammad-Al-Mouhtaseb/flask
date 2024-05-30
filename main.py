@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 import os
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
-import requests, scipy, torch, threading, json
+import requests, scipy, torch, threading
 app = Flask(__name__)
 
 

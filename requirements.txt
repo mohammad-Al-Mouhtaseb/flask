@@ -9,4 +9,3 @@ transformers==4.41.2
 requests==2.32.3
 scipy==1.14.0rc1
 torch==2.3.0
-threading==5.5.5

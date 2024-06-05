@@ -4,24 +4,25 @@ from transformers import AutoProcessor, MusicgenForConditionalGeneration
 import requests, scipy, torch
 app = Flask(__name__)
 
-model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small")
-processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
-model.to(device)
-sampling_rate = model.config.audio_encoder.sampling_rate
+@app.route('/', methods=['POST'])
+def index(): data = json.loads(request.body)
+    desc=data['desc']
+    doctor=data['doctor']
+    patient=data['patient']
+    type=data['type']
 
-def gen_fun():
-    inputs = processor(
-        text=['sad'],
-        padding=True,
-        return_tensors="pt",
-    )
-    audio_values = model.generate(**inputs.to(device), do_sample=True, guidance_scale=3, max_new_tokens=100)
-    scipy.io.wavfile.write('s1', rate=sampling_rate, data=audio_values[0, 0].cpu().numpy())
+    # music_path="sounds/music/"+type+"_"+desc+".flac"
 
-@app.route('/')
-def index():
-    gen_fun()
+    API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
+    key=Music.objects.get(doctor="api@api.com").type
+    print(key)  
+    headers = {"Authorization": "Bearer "+key}
+    audio_bytes = {
+        "inputs": desc
+    }
+    response = requests.post(API_URL, headers=headers, json=audio_bytes, timeout=120)
+    # music=Music.objects.create(doctor=doctor,patient=patient,music_path=music_path,type=type)
+    # music.save()
     return jsonify({"res":"sucsess"})
 
 if __name__ == '__main__':

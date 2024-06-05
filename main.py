@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST','GET'])
 def index():
     print('start')
-    desc=request.form['desc']
+    desc=request.request.get_json()['desc']
     print(desc)
     API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
     headers = {"Authorization": "Bearer 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"}

@@ -14,9 +14,7 @@ def index(): data = json.loads(request.body)
     # music_path="sounds/music/"+type+"_"+desc+".flac"
 
     API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
-    key=Music.objects.get(doctor="api@api.com").type
-    print(key)  
-    headers = {"Authorization": "Bearer "+key}
+    headers = {"Authorization": "Bearer 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"}
     audio_bytes = {
         "inputs": desc
     }

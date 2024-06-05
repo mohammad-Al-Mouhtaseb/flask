@@ -3,10 +3,10 @@ import os
 import requests as req
 app = Flask(__name__)
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/', methods=['GET'])
 def index():
     print('start')
-    desc=request.request.get_json()['desc']
+    desc=request.request.args['desc']
     print(desc)
     API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
     headers = {"Authorization": "Bearer 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"}

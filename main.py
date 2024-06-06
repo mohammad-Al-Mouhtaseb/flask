@@ -16,7 +16,7 @@ def index():
             "inputs": desc
         }
         print('1')
-        response = req.post(API_URL, headers=headers, json=audio_bytes, timeout=120)
+        response = req.post(API_URL, headers=headers, json=audio_bytes)
         print('2')
         if response.status_code != 200:
             return jsonify({"res":"Failed to get response from API"})

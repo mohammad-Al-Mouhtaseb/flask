@@ -15,23 +15,28 @@ def index():
         audio_bytes = {
             "inputs": desc
         }
-        print('end')
+        print('1')
         response = req.post(API_URL, headers=headers, json=audio_bytes, timeout=120)
+        print('2')
         if response.status_code != 200:
             return jsonify({"res":"Failed to get response from API"}), 500
         with open('inputfile.flac', 'wb') as f:
             f.write(response.content)
         
+        print('3')
         # Convert FLAC to MP3 using Audio Conversion API
         AUDIO_CONVERSION_API_URL = 'https://api.audioconversion.com/convert'
         files = {'file': open('inputfile.flac', 'rb')}
         data = {'outputformat': 'mp3'}
+        print('4')
         conversion_response = req.post(AUDIO_CONVERSION_API_URL, files=files, data=data)
+        print('5')
         if conversion_response.status_code != 200:
             return jsonify({"res":"Failed to convert audio file"}), 500
         with open('output.mp3', 'wb') as f:
             f.write(conversion_response.content)
         
+        print('end')
         return send_file('output.mp3', mimetype='audio/mpeg')
     except Exception as e:
         print(e)

@@ -11,7 +11,7 @@ def index():
         desc=request.args.get('desc', '')
         print(desc)
         API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
-        headers = {"Authorization": "Bearer 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"}
+        headers = {"Authorization": "Bearer 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"}
         audio_bytes = {
             "inputs": desc
         }

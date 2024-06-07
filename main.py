@@ -12,6 +12,7 @@ def index():
         "inputs": "paly",
     }
     response = requests.post(API_URL, headers=headers, json=audio_bytes)
+    print("1")
     return Response(response.content)
 
 if __name__ == '__main__':

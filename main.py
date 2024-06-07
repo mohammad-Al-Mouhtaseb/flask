@@ -11,9 +11,9 @@ def index():
     audio_bytes = {
         "inputs": "paly",
     }
-    response = requests.post(API_URL, headers=headers, json=audio_bytes)
+    res = req.post(API_URL, headers=headers, json=audio_bytes)
     print("1")
-    return Response(response.content)
+    return Response(res.content)
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))

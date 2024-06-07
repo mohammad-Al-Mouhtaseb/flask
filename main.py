@@ -14,7 +14,7 @@ def index():
         "inputs": desc,
     }
     res = req.post(API_URL, headers=headers, json=audio_bytes)
-    return Response(res)#content
+    return Response(res.content)
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))

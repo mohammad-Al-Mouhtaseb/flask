@@ -3,9 +3,8 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
-    print("start")
     a1=int(request.args['a1'])#Stress
     a2=int(request.args['a2'])#Anxiety
     a3=int(request.args['a3'])#Depression
@@ -51,10 +50,11 @@ def index():
     # elif(s[1]=="True"):
     #     iris.das_s=True
     # return Response({d[0]:d[1],a[0]:a[1],s[0]:s[1]})
-    depression=False
-    anxiety=False
-    stress=False
-    print("2")
+    
+    # depression=False
+    # anxiety=False
+    # stress=False
+    # print("2")
     
     depression = (a3+a5+a7)>=4
     anxiety = (a2+a6+a8)>=4 if not depression else False

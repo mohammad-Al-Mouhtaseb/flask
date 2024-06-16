@@ -49,15 +49,14 @@ def index():
     # elif(s[1]=="True"):
     #     iris.das_s=True
     # return Response({d[0]:d[1],a[0]:a[1],s[0]:s[1]})
+    depression=False
+    anxiety=False
+    stress=False
+    
     depression = (a3+a5+a7)>=4
     anxiety = (a2+a6+a8)>=4 if not depression else False
     stress = (a1+a4)>=3 if not anxiety else False
-    if depression:
-        iris.das_d = True
-    elif anxiety:
-        iris.das_a = True
-    elif stress:
-        iris.das_s = True
+    
     return Response({'Depression': str(depression), 'Anxiety': str(anxiety), 'Stress': str(stress)})
 
 

@@ -57,7 +57,7 @@ def index():
     anxiety = (a2+a6+a8)>=4 if not depression else False
     stress = (a1+a4)>=3 if not anxiety else False
     
-    return jsonify({'Depression': str(depression), 'Anxiety': str(anxiety), 'Stress': str(stress)})
+    return jsonify({'Depression': depression, 'Anxiety': anxiety, 'Stress': stress})
 
 
 if __name__ == '__main__':

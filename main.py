@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, Response
 import os
-# from experta import *
+from experta import *
 
 app = Flask(__name__)
 

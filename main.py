@@ -13,7 +13,6 @@ def index():
     a6=int(request.args['a6'])#Anxiety
     a7=int(request.args['a7'])#Depression
     a8=int(request.args['a8'])#Anxiety
-    print("1")
     # class Robot(KnowledgeEngine):
     #     @Rule(NOT(Fact(Depression=W())))
     #     def Depression(self):
@@ -51,16 +50,23 @@ def index():
     #     iris.das_s=True
     # return Response({d[0]:d[1],a[0]:a[1],s[0]:s[1]})
     
-    # depression=False
-    # anxiety=False
-    # stress=False
-    # print("2")
-    
-    depression = (a3+a5+a7)>=4
-    anxiety = (a2+a6+a8)>=4 if not depression else False
-    stress = (a1+a4)>=3 if not anxiety else False
-    print("4")
-    
+    depression = (a3+a5+a7)*3
+    anxiety = (a2+a6+a8)*3
+    stress = (a1+a4)*4
+
+    if depression>=anxiety and depression>=stress:
+        depression=True
+        anxiety=False
+        stress=False
+    elif anxiety>=stress:
+        depression=False
+        anxiety=True
+        stress=False
+    else:
+        depression=False
+        anxiety=False
+        stress=True
+        
     return jsonify({'Depression': depression, 'Anxiety': anxiety, 'Stress': stress})
 
 

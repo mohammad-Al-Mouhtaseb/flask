@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify
 import os
 
 app = Flask(__name__)
@@ -57,7 +57,7 @@ def index():
     anxiety = (a2+a6+a8)>=4 if not depression else False
     stress = (a1+a4)>=3 if not anxiety else False
     
-    return Response({'Depression': str(depression), 'Anxiety': str(anxiety), 'Stress': str(stress)})
+    return jsonify({'Depression': str(depression), 'Anxiety': str(anxiety), 'Stress': str(stress)})
 
 
 if __name__ == '__main__':

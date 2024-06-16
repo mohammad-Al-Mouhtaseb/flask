@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
+    print("start")
     a1=int(request.args['a1'])#Stress
     a2=int(request.args['a2'])#Anxiety
     a3=int(request.args['a3'])#Depression
@@ -13,6 +14,7 @@ def index():
     a6=int(request.args['a6'])#Anxiety
     a7=int(request.args['a7'])#Depression
     a8=int(request.args['a8'])#Anxiety
+    print("1")
     # class Robot(KnowledgeEngine):
     #     @Rule(NOT(Fact(Depression=W())))
     #     def Depression(self):
@@ -52,10 +54,12 @@ def index():
     depression=False
     anxiety=False
     stress=False
+    print("2")
     
     depression = (a3+a5+a7)>=4
     anxiety = (a2+a6+a8)>=4 if not depression else False
     stress = (a1+a4)>=3 if not anxiety else False
+    print("4")
     
     return jsonify({'Depression': depression, 'Anxiety': anxiety, 'Stress': stress})
 

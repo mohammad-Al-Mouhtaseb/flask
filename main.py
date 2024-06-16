@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    print('start')
     a1=int(request.args['a1'])#Stress
     a2=int(request.args['a2'])#Anxiety
     a3=int(request.args['a3'])#Depression
@@ -14,6 +15,7 @@ def index():
     a6=int(request.args['a6'])#Anxiety
     a7=int(request.args['a7'])#Depression
     a8=int(request.args['a8'])#Anxiety
+    print('1')
     class Robot(KnowledgeEngine):
         @Rule(NOT(Fact(Depression=W())))
         def Depression(self):

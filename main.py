@@ -6,12 +6,19 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     a1=int(request.args['a1'])#Stress
+    print("1")
     a2=int(request.args['a2'])#Anxiety
+    print("1")
     a3=int(request.args['a3'])#Depression
+    print("1")
     a4=int(request.args['a4'])#Stress
+    print("1")
     a5=int(request.args['a5'])#Depression
+    print("1")
     a6=int(request.args['a6'])#Anxiety
+    print("1")
     a7=int(request.args['a7'])#Depression
+    print("1")
     a8=int(request.args['a8'])#Anxiety
     print("1")
     # class Robot(KnowledgeEngine):

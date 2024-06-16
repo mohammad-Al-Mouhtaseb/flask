@@ -1,21 +1,18 @@
 from flask import Flask, jsonify, request, Response
 import os
-from experta import *
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    # print('start')
-    # a1=int(request.args['a1'])#Stress
-    # a2=int(request.args['a2'])#Anxiety
-    # a3=int(request.args['a3'])#Depression
-    # a4=int(request.args['a4'])#Stress
-    # a5=int(request.args['a5'])#Depression
-    # a6=int(request.args['a6'])#Anxiety
-    # a7=int(request.args['a7'])#Depression
-    # a8=int(request.args['a8'])#Anxiety
-    # print('1')
+    a1=int(request.args['a1'])#Stress
+    a2=int(request.args['a2'])#Anxiety
+    a3=int(request.args['a3'])#Depression
+    a4=int(request.args['a4'])#Stress
+    a5=int(request.args['a5'])#Depression
+    a6=int(request.args['a6'])#Anxiety
+    a7=int(request.args['a7'])#Depression
+    a8=int(request.args['a8'])#Anxiety
     # class Robot(KnowledgeEngine):
     #     @Rule(NOT(Fact(Depression=W())))
     #     def Depression(self):
@@ -51,9 +48,18 @@ def index():
     #     iris.das_a=True
     # elif(s[1]=="True"):
     #     iris.das_s=True
-
     # return Response({d[0]:d[1],a[0]:a[1],s[0]:s[1]})
-    return Response("hi")
+    depression = (a3+a5+a7)>=4
+    anxiety = (a2+a6+a8)>=4 if not depression else False
+    stress = (a1+a4)>=3 if not anxiety else False
+    if depression:
+        iris.das_d = True
+    elif anxiety:
+        iris.das_a = True
+    elif stress:
+        iris.das_s = True
+    return Response({'Depression': str(depression), 'Anxiety': str(anxiety), 'Stress': str(stress)})
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=os.getenv("PORT", default=5000))

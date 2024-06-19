@@ -4,7 +4,7 @@ import requests as req
 
 app = Flask(__name__)
 
-@app.route('/music')
+@app.route('/music/')
 def index():
     desc = request.args["desc"]
     key = request.args["key"]
@@ -16,7 +16,7 @@ def index():
     res = req.post(API_URL, headers=headers, json=audio_bytes)
     return Response(res.content)
 
-@app.route('/expert')
+@app.route('/expert/')
 def index():
     a1=int(request.args['a1'])#Stress
     a2=int(request.args['a2'])#Anxiety

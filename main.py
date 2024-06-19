@@ -8,6 +8,10 @@ def index():
     a=request.args['a']
     return jsonify({'a': a})
 
+@app.route('/y/')
+def index():
+    a=request.args['a']
+    return jsonify({'a': a})
 
 @app.route('/')
 def index():

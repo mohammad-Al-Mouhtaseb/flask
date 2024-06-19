@@ -4,8 +4,8 @@ import requests as req
 
 app = Flask(__name__)
 
-@app.route('/music/')
-def index():
+@app.route('/music')
+def music():
     desc = request.args["desc"]
     key = request.args["key"]
     API_URL = "https://api-inference.huggingface.co/models/facebook/musicgen-small"
@@ -16,8 +16,8 @@ def index():
     res = req.post(API_URL, headers=headers, json=audio_bytes)
     return Response(res.content)
 
-@app.route('/expert/')
-def index():
+@app.route('/expert')
+def expert():
     a1=int(request.args['a1'])#Stress
     a2=int(request.args['a2'])#Anxiety
     a3=int(request.args['a3'])#Depression

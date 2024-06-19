@@ -3,11 +3,6 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/x')
-def index():
-    a=request.args['a']
-    return jsonify({'a': a})
-
 @app.route('/y/')
 def index():
     a=request.args['a']
